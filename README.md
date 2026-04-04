@@ -49,7 +49,37 @@ LED 4 to `GPIO 7`
 
 ## 💻 Software & Setup
 
-### 1. Find Your Slave's MAC Address
+# 1. Find Your Slave's MAC Address
 Before uploading, you need to know the MAC address of your ESP32-S3. Run a basic WiFi MAC address scanner sketch on the S3, note down the 6-byte address, and update this line in the **Master Code**:
+
 ```cpp
 uint8_t broadcastAddress[] = {0xB8, 0xF8, 0x62, 0xF7, 0xEF, 0xC4}; // REPLACE THIS
+
+# 2. Flashing the Master (ESP32-S)
+Open the Master Code in Arduino IDE.
+
+Select Board: DOIT ESP32 DEVKIT V1 (or your specific ESP32 board).
+
+Upload the code.
+
+3. Flashing the Slave (ESP32-S3)
+CRITICAL IDE SETTINGS: For the ESP32-S3 to act as a keyboard, you must configure the Tools menu correctly before uploading:
+
+Board: ESP32S3 Dev Module
+
+USB Mode: Hardware CDC and JTAG
+
+Connect the S3 via its USB/OTG port (not the UART port).
+
+Upload the code.
+
+How to Use
+Leave the Slave (ESP32-S3) plugged into your computer's USB port.
+
+Power on the Master (ESP32-S).
+
+The Slave will light up LED 1, indicating you are in Profile 1.
+
+Change Profiles: Press and hold Button 4 for 1 second. The LEDs will flash, and it will switch to Profile 2 (Media Mode).
+
+Global Shortcuts: No matter what profile you are in, holding Buttons 1, 2, or 3 will instantly open Task Manager, File Explorer, or close the current window!
