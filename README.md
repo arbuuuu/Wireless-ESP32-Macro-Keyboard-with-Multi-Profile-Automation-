@@ -11,8 +11,11 @@ I recently developed a wireless macro controller using ESP32 and ESP-NOW, design
 **3 Smart Profiles (Layer System):** Multiply your physical buttons. 4 buttons give you up to 16 different actions.
 
 **Profile 1:** Windows Navigation (Lock, Desktop, Copy, Paste)
+
 **Profile 2:** Media Controller (Play/Pause, Mute, Vol Up, Vol Down)
+
 **Profile 3:** The Automation Mode (One-click launch Workspace, AI Assistants, and CMD)
+
 **Short Press & Long Press Logic:** Every button handles both short clicks and long holds for different shortcuts.
 
 ---
