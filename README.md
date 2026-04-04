@@ -3,9 +3,13 @@ I recently developed a wireless macro controller using ESP32 and ESP-NOW, design
 
 ## Key Features
 
+
 **Ultra-Fast Wireless:** Uses ESP-NOW protocol instead of Bluetooth/WiFi for instant communication between the remote and the PC receiver.
+
 **Plug & Play:** The receiver acts as a standard USB Keyboard. No companion software needed on the PC.
+
 **3 Smart Profiles (Layer System):** Multiply your physical buttons. 4 buttons give you up to 16 different actions.
+
 **Profile 1:** Windows Navigation (Lock, Desktop, Copy, Paste)
 **Profile 2:** Media Controller (Play/Pause, Mute, Vol Up, Vol Down)
 **Profile 3:** The Automation Mode (One-click launch Workspace, AI Assistants, and CMD)
