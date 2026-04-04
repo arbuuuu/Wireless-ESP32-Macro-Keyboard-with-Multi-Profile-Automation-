@@ -7,7 +7,7 @@
 USBHIDKeyboard Keyboard;
 USBHIDConsumerControl ConsumerControl; 
 
-const int ledPins[] = {4, 5, 3, 7}; // Aapke 4 LEDs ke pins  master code for esp32
+const int ledPins[] = {4, 5, 3, 7}; 
 
 // Track current profile (1 = General, 2 = Media, 3 = Automation)
 int currentProfile = 1; 
@@ -20,20 +20,18 @@ struct_message receivedData;
 
 // Update LEDs to show active profile
 void displayProfile() {
-    for(int i=0; i<4; i++) digitalWrite(ledPins[i], LOW); // Sabhi LEDs off
-    digitalWrite(ledPins[currentProfile - 1], HIGH);      // Sirf active profile ki LED on
+    for(int i=0; i<4; i++) digitalWrite(ledPins[i], LOW);  
+    digitalWrite(ledPins[currentProfile - 1], HIGH);       
 }
 
 void OnDataRecv(const esp_now_recv_info *info, const uint8_t *incomingData, int len) {
     memcpy(&receivedData, incomingData, sizeof(receivedData));
     int btn = receivedData.buttonNum;
     
-    // --------------------------------------------------------
-    // THE MODE SWITCH (Long Press Button 4)
-    // --------------------------------------------------------
+ 
     if(btn == 14) {
         currentProfile++;
-        if(currentProfile > 3) currentProfile = 1; // 3 ke baad wapas 1 par
+        if(currentProfile > 3) currentProfile = 1;  
         
         // Blink all LEDs to confirm Mode Change
         for(int i=0; i<4; i++) digitalWrite(ledPins[i], HIGH);
@@ -42,9 +40,7 @@ void OnDataRecv(const esp_now_recv_info *info, const uint8_t *incomingData, int 
         return; // Yahan se wapas laut jayein, koi shortcut press na karein
     }
 
-    // --------------------------------------------------------
-    // SHORT PRESS ACTIONS (Buttons 1-4)
-    // --------------------------------------------------------
+     
     if(btn >= 1 && btn <= 4) {
         
         // PROFILE 1: Windows Navigation
@@ -97,15 +93,13 @@ void OnDataRecv(const esp_now_recv_info *info, const uint8_t *incomingData, int 
             }
         }
 
-        // Keys ko release karein taaki PC stuck na ho
+         
         delay(100);
         Keyboard.releaseAll(); 
         ConsumerControl.release();
     }
     
-    // --------------------------------------------------------
-    // GLOBAL LONG PRESS ACTIONS (Buttons 11-13)
-    // --------------------------------------------------------
+    
     else if(btn >= 11 && btn <= 13) {
         switch(btn) {
             case 11: // Long Press 1: Task Manager
@@ -129,20 +123,20 @@ void setup() {
         pinMode(ledPins[i], OUTPUT);
     }
     
-    // USB aur Keyboard Start karein
+     
     Keyboard.begin();
     ConsumerControl.begin(); 
     USB.begin();
     
-    // ESP-NOW Start karein
+    
     WiFi.mode(WIFI_STA);
     if (esp_now_init() != ESP_OK) return;
     esp_now_register_recv_cb(OnDataRecv);
     
-    // Boot hote hi Profile 1 ki LED on karein
+     
     displayProfile(); 
 }
 
 void loop() {
-    // USB tasks background mein chalte hain
+    
 }
