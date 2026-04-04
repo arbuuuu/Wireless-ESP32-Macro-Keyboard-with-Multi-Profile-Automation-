@@ -55,31 +55,26 @@ Before uploading, you need to know the MAC address of your ESP32-S3. Run a basic
 ```cpp
 uint8_t broadcastAddress[] = {0xB8, 0xF8, 0x62, 0xF7, 0xEF, 0xC4}; // REPLACE THIS
 
-# 2. Flashing the Master (ESP32-S)
-Open the Master Code in Arduino IDE.
+### 2. Flashing the Master (ESP32-S)
+* Open the Master Code in Arduino IDE.
+* Select Board: **DOIT ESP32 DEVKIT V1** (or your specific ESP32 board).
+* Upload the code.
 
-Select Board: DOIT ESP32 DEVKIT V1 (or your specific ESP32 board).
+### 3. Flashing the Slave (ESP32-S3)
+* **CRITICAL IDE SETTINGS:** For the ESP32-S3 to act as a keyboard, you *must* configure the Tools menu correctly before uploading:
+  * **Board:** `ESP32S3 Dev Module`
+  * **USB Mode:** `Hardware CDC and JTAG`
+  * **USB Functions:** `HID` ⚠️ *(This is mandatory)*
+* Connect the S3 via its **USB/OTG** port (not the UART port).
+* Upload the code.
 
-Upload the code.
+## 🎮 How to Use
+1. Leave the **Slave (ESP32-S3)** plugged into your computer's USB port.
+2. Power on the **Master (ESP32-S)**.
+3. The Slave will light up LED 1, indicating you are in Profile 1.
+4. **Change Profiles:** Press and hold **Button 4** for 1 second. The LEDs will flash, and it will switch to Profile 2 (Media Mode).
+5. **Global Shortcuts:** No matter what profile you are in, holding Buttons 1, 2, or 3 will instantly open Task Manager, File Explorer, or close the current window!
 
-3. Flashing the Slave (ESP32-S3)
-CRITICAL IDE SETTINGS: For the ESP32-S3 to act as a keyboard, you must configure the Tools menu correctly before uploading:
 
-Board: ESP32S3 Dev Module
 
-USB Mode: Hardware CDC and JTAG
-
-Connect the S3 via its USB/OTG port (not the UART port).
-
-Upload the code.
-
-How to Use
-Leave the Slave (ESP32-S3) plugged into your computer's USB port.
-
-Power on the Master (ESP32-S).
-
-The Slave will light up LED 1, indicating you are in Profile 1.
-
-Change Profiles: Press and hold Button 4 for 1 second. The LEDs will flash, and it will switch to Profile 2 (Media Mode).
-
-Global Shortcuts: No matter what profile you are in, holding Buttons 1, 2, or 3 will instantly open Task Manager, File Explorer, or close the current window!
+ 
